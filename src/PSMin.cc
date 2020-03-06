@@ -17,7 +17,7 @@ double variance;
 
 int main(int argc, char *argv[]) {
   std::cout << ">>> Particle swarm optimization" << std::endl;
-  std::vector<struct iteration_char> r (6000);
+  std::vector<struct iteration_char> r (6000); //ad ogni elemento corrisponde l'iterazione
 
   Config conf;
   conf.num_particles = 20;
@@ -50,14 +50,14 @@ int main(int argc, char *argv[]) {
   //domain.SetParDomain(2, "p2", 3.5251e-01, 3.5251e-01);//
   //domain.SetParDomain(3, "p3", 1.00, 1.00);//
   //domain.SetParDomain(4, "p4", 0.580, 0.580);//
-  //domain.SetParDomain(5, "p5", 20, 20);//H
+  //domain.SetParDomain(5, "p5", 20, 20);//
   //domain.SetParDomain(6, "p6", 1.0464, 1.0464);//
   //domain.SetParDomain(7, "p7", 6.9119e-02, 6.9119e-02);//
-  //domain.SetParDomain(8, "p8", 3.098, 3.098);//H
-  //domain.SetParDomain(9, "p9", 6.8136e-01, 6.8136e-01);//H
+  //domain.SetParDomain(8, "p8", 3.098, 3.098);//
+  //domain.SetParDomain(9, "p9", 6.8136e-01, 6.8136e-01);//
   //domain.SetParDomain(10, "p10", 2.5249, 2.5249);//
   //domain.SetParDomain(11, "p11", -4.9824e-01, -4.9824e-01);//
-  //domain.SetParDomain(12, "p12", 1.00, 2.00);  //1.57033 chi ->1.2521 (lo stesso senza binwidth)
+  //domain.SetParDomain(12, "p12", 1.00, 2.00);  //1.57033 
   conf.ParDomain = domain;
 
   double Ndof = (data->GetNbinsX()-model->GetNumberFreeParameters());
@@ -92,7 +92,7 @@ int main(int argc, char *argv[]) {
 };
 
 
-  for (int i=0; i<1000;i++){ //oridno e trovo la media
+  for (int i=0; i<1000;i++){ //oridno e trovo la media e varianza per ogni iterazione
     std::sort(r[i].chi.begin(), r[i].chi.end());
     double sum=0.;
     for(int l=0; l < r[i].chi.size(); l++){
