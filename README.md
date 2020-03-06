@@ -1,2 +1,2 @@
-# PS-FIT
-Metodo di fitting tramite particle swarm
+# Algoritmi genetici
+Fit di dati sperimentali
