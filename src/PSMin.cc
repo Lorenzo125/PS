@@ -103,13 +103,12 @@ int main(int argc, char *argv[]) {
     for(int l=0; l < r[i].chi.size(); l++){
       r[i].variance+=TMath::Power(r[i].chi[l]-r[i].average, 2)/(r[i].chi.size()-1);
     };
-    //std::cout << "la media e la varainza stand valgono" << r[i].average << " e " << TMath::Power(r[i].variance, 0.5) << std::endl;
   };
   TFile *file = TFile::Open("PS_20_5000_2_2_0.05.root", "RECREATE");
   TGraphAsymmErrors *chi_trend = new TGraphAsymmErrors();
   for(int m=1; m<=500;m++){
     chi_trend ->SetPoint (m,m, r[m-1].average);
-    chi_trend ->SetPointError(m,0,0, TMath::Power(r[m-1].variance, 0.5), TMath::Power(r[m-1].variance, 0.5));
+    chi_trend ->SetPointError(m,0,0, TMath::Power(r[m-1].variance/r[m-1].chi.size(), 0.5), TMath::Power(r[m-1].variance/r[m-1].chi.size(), 0.5));
   };
   file->cd();
   chi_trend->Write("chi_trend");
