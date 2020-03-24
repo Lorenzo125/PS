@@ -4,13 +4,6 @@
 Particle::Particle(size_t ndim) :
 m_position(ndim, 0), m_position_best(ndim, 0), m_velocity(ndim, 0), m_cost(0.), m_cost_best(0.) {};
 
-/*Particle::Particle(const std::vector<double>& v) :
-m_genes(v), m_cost(0.) {};
-
-Particle::Particle(const Particle& c) :
-m_genes(c.m_genes), m_cost(c.m_cost) {};*/
-
-
 size_t Particle::Size() const {
   return m_position.size();
 };
@@ -53,7 +46,7 @@ void Particle::SetVelocity(size_t i, double x){
   m_velocity[i]=x;
 };
 
-void Particle::UpdateModel(TF1* f) {
+void Particle::UpdateModel(TF1* f) { //assegna al modello i parametri corrispondenti alla posizione della particella
   for (size_t i = 0; i < m_position.size(); ++i) {
     f->SetParameter(i, m_position[i]);
   }
