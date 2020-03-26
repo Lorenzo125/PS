@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
   TGraphAsymmErrors *chi_trend = new TGraphAsymmErrors(); //creo il grafico andamento chi medio con relativa banda di errore standard
 
 
-  TF1* model = new TF1("model","[12]*([0]*([1]*ROOT::Math::crystalball_function(x, [6], [5], [7]*[3], [8]+[4]) + (0.90-[1])*ROOT::Math::crystalball_function(x, [6], [5], [7], [8])) + (1-[0])*([2]*exp([11]*x) + (1.0-[2])*(1-TMath::Erf((x-[10])/[9]))*0.5))", 1.50, 8.70);
+  TF1* model = new TF1("model","[12]*([0]*([1]*ROOT::Math::crystalball_function(x, [6], [5], [7]*[3], [8]+[4]) + (1.-[1])*ROOT::Math::crystalball_function(x, [6], [5], [7], [8])) + (1.-[0])*([2]*exp([11]*x) + (1.-[2])*(1.-TMath::Erf((x-[10])/[9]))*0.5))", 1.50, 8.70);
   ParametersDomain domain(model->GetNumberFreeParameters()); //imposto dominio in cui possono variare i parametri
   domain.SetParDomain(0, "p0", 1e-1, 9e-1);
   domain.SetParDomain(1, "p1", 0.001, 0.10);
