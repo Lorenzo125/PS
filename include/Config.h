@@ -15,7 +15,12 @@ public:
 
   int NumberOfParameters() const {
     return ParDomain.NumberOfParameters();
-  }
+  };
+
+  int ShowNumParticles() {
+    return num_particles;
+  };
+
 };
 
 #endif
