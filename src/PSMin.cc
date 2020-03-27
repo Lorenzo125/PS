@@ -82,7 +82,7 @@ int main(int argc, char *argv[]) {
     };
   };
 
-  ////ATTENZIONE! I NUMERI SONO PRESI NON IN MODO AUTOMATICA DALL'ISTOGRAMMA, NON CAMBIANO PERÒ
+  ////ATTENZIONE! I NUMERI SONO PRESI NON IN MODO AUTOMATICO DALL'ISTOGRAMMA
 
   int binx = conf.ShowNumParticles()*1000/6000+1;
 
