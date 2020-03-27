@@ -1,2 +1,2 @@
-# Algoritmi genetici
+# Particle swarm
 Fit di dati sperimentali
