@@ -1,25 +1,27 @@
 #include "ParametersDomain.h"
 
-ParametersDomain::ParametersDomain() :
-m_par(0) {};
+ParametersDomain::ParametersDomain() : m_par(0){};
 
-ParametersDomain::ParametersDomain(size_t s) :
-m_par(s) {};
+ParametersDomain::ParametersDomain(size_t n) : m_par(n){};
 
-void ParametersDomain::SetParDomain(size_t i, std::string vname, double vmin, double vmax) {
-  m_par[i].name = vname;
-  m_par[i].min_val = vmin;
-  m_par[i].max_val = vmax;
+void ParametersDomain::setParameterDomain(size_t t, std::string t_name, double t_min, double t_max)
+{
+   m_par[t].m_name    = t_name;
+   m_par[t].m_min_val = t_min;
+   m_par[t].m_max_val = t_max;
 };
 
-double ParametersDomain::ViewParMin(size_t i) {
-  return m_par[i].min_val;
+double ParametersDomain::getParameterMin(size_t t)
+{
+   return m_par[t].m_min_val;
 };
 
-double ParametersDomain::ViewParMax(size_t i) {
-  return m_par[i].max_val;
+double ParametersDomain::getParameterMax(size_t t)
+{
+   return m_par[t].m_max_val;
 };
 
-size_t ParametersDomain::NumberOfParameters() const {
-  return m_par.size();
+size_t ParametersDomain::getNumberOfParameters() const
+{
+   return m_par.size();
 };

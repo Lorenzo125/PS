@@ -1,63 +1,87 @@
 #ifndef Particle_h
 #define Particle_h
 
-#include "TF1.h"
 #include <vector>
 #include <iostream>
 #include <iomanip>
+#include "TF1.h"
 
 class Particle {
 public:
-  Particle(size_t);
+   /// Particle default constructor _n_ - dimension particle (- _n_ fitting parameters)
+   Particle(size_t n);
 
-  size_t Size() const;
+   /// Set the particle's _t_ - coordinate <br> <br>
+   /// Referenced by Population::init(), Population::moveParticles()
+   void setPosition(size_t t, double);
 
-  double ViewPosition(size_t);
+   /// Update the best position recorded by the particle if the current one is a better solution <br> <br>
+   /// Referenced by Population::setBestCost()
+   void setBestPosition();
 
-  double ViewBestPosition(size_t);
+   /// Update the velocity according to best global solution and best own solution <br> <br>
+   /// Referenced by Population::setVelocity(), Population::init()
+   void setVelocity(size_t, double);
 
-  double ViewVelocity(size_t);
+   /// Update the cost after the evaluation of the model in the current position <br> <br>
+   /// Referenced by Evaluate::computeCostFit()
+   void setCost(double);
 
-  double ViewCost();
+   /// Update the parameters of the model with the current position <br> <br>
+   /// Referenced by Evaluate::computeCostFit()
+   void setModel(TF1 *);
 
-  double ViewBestCost();
+   /// Return the dimension of particles <br> <br>
+   /// Referenced by Population::init(), Population::setVelocity(), Population::moveParticles()
+   size_t getDimension() const;
 
-  void SetPosition(size_t, double);
+   /// Return the _t_ - coordinate of the particle in the _n_ - space current position <br> <br>
+   /// Referenced by Population::setVelocity(), Population::moveParticles()
+   double getPosition(size_t t);
 
-  void SetBestPosition();
+   /// Return the _t_ - coordinate of the best position found by the particle <br> <br>
+   /// Referenced by Population::setVelocity()
+   double getBestPosition(size_t t);
 
-  void SetVelocity(size_t, double);
+   /// Return the _t_ - component of the velocity <br> <br>
+   /// Referenced by Population::setVelocity(), Population::moveParticles()
+   double getVelocity(size_t t);
 
-  void SetCost(double);
+   /// Return the cost computed using particle's current position <br> <br>
+   /// Referenced by Population::setBestCost()
+   double getCost();
 
-  void UpdateModel(TF1*);
+   /// Return the cost computed using the best position found by the particle <br> <br>
+   /// Referenced by Population::setBestCost()
+   double getBestCost();
 
-  friend std::ostream& operator<<(std::ostream& os, Particle& rhs) { //per stampare a video una particella con relative coordinate e chi
-    std::cout << "la particella con chi best migliore attualmente si trova in:" << std::endl;
-    for (size_t i = 0; i < rhs.Size(); ++i) {
-      os << std::setw(10) << std::right << rhs.ViewPosition(i);
-      if (i < rhs.Size()-1) os << ", ";
-    }
-    os << " --> fitness attuale " << rhs.m_cost << std::endl;
-    std::cout << "la particella con chi best migliore ha trovato il chi best in: " << std::endl;
-    for (size_t i = 0; i < rhs.Size(); ++i) {
-      os << std::setw(10) << std::right << rhs.ViewBestPosition(i);
-      if (i < rhs.Size()-1) os << ", ";
-    }
-    os << " --> fitness migliore " << rhs.m_cost_best << std::endl;
-    return os;
-  };
+   /// Show on video the particle's attributes for each iteration
+   friend std::ostream &operator<<(std::ostream &t_os, Particle &t_rhs)
+   {
+      std::cout << "la particella con chi best migliore attualmente si trova in:" << std::endl;
+      for (size_t i = 0; i < t_rhs.getDimension(); ++i) {
+         t_os << std::setw(10) << std::right << t_rhs.getPosition(i);
+         if (i < t_rhs.getDimension() - 1) t_os << ", ";
+      };
+      t_os << " --> fitness attuale " << t_rhs.m_cost << std::endl;
+      std::cout << "la particella con chi best migliore ha trovato il chi best in: " << std::endl;
+      for (size_t i = 0; i < t_rhs.getDimension(); ++i) {
+         t_os << std::setw(10) << std::right << t_rhs.getBestPosition(i);
+         if (i < t_rhs.getDimension() - 1) t_os << ", ";
+      };
+      t_os << " --> fitness migliore " << t_rhs.m_cost_best << std::endl;
+      return t_os;
+   };
 
-  friend bool operator<(const Particle& l, const Particle& r) { //utilizzato solo per riordinare le particelle
-  return l.m_cost_best < r.m_cost_best;
-};
+   /// Compare two particles' best cost found, in order to sort the particles
+   friend bool operator<(const Particle &l, const Particle &r) { return l.m_cost_best < r.m_cost_best; };
 
 private:
-  std::vector<double> m_position;
-  std::vector<double> m_position_best;
-  std::vector<double> m_velocity;
-  double m_cost;
-  double m_cost_best;
+   std::vector<double> m_position;      /**<Vector storing the current position coordinates */
+   std::vector<double> m_position_best; /**<Vector storing the best position coordinates found */
+   std::vector<double> m_velocity;      /**<Vector storing the velocity components*/
+   double              m_cost;          /**<Particle's cost evaluated in the current position*/
+   double              m_cost_best;     /**<Particle's best cost found*/
 };
 
 #endif

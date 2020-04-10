@@ -1,53 +1,64 @@
 #include "Particle.h"
-#include  "TRandom.h"
+#include "TRandom.h"
 
-Particle::Particle(size_t ndim) :
-m_position(ndim, 0), m_position_best(ndim, 0), m_velocity(ndim, 0), m_cost(0.), m_cost_best(0.) {};
+Particle::Particle(size_t n) : m_position(n, 0), m_position_best(n, 0), m_velocity(n, 0), m_cost(0.), m_cost_best(0.){};
 
-size_t Particle::Size() const {
-  return m_position.size();
+void Particle::setPosition(size_t t, double t_x)
+{
+   m_position[t] = t_x;
 };
 
-double Particle::ViewPosition(size_t i) {
-  return m_position[i];
+void Particle::setBestPosition()
+{
+   for (int i = 0; i < m_position.size(); i++) {
+      m_position_best[i] = m_position[i];
+   };
+   m_cost_best = m_cost;
 };
 
-double Particle::ViewBestPosition(size_t i) {
-  return m_position_best[i];
+void Particle::setCost(double t)
+{
+   m_cost = t;
 };
 
-double Particle::ViewVelocity(size_t i) {
-  return m_velocity[i];
+void Particle::setVelocity(size_t t, double t_x)
+{
+   m_velocity[t] = t_x;
 };
 
-double Particle::ViewCost(){
-  return m_cost;
+void Particle::setModel(TF1 *t_f)
+{
+   for (size_t i = 0; i < m_position.size(); ++i) {
+      t_f->SetParameter(i, m_position[i]);
+   };
 };
 
-double Particle::ViewBestCost(){
-  return m_cost_best;
+size_t Particle::getDimension() const
+{
+   return m_position.size();
 };
 
-void Particle::SetPosition(size_t i, double x) {
-  m_position[i]=x;
+double Particle::getPosition(size_t t)
+{
+   return m_position[t];
 };
 
-void Particle::SetBestPosition() {
-  for (int i=0; i < m_position.size(); i++)
-  m_position_best[i]=m_position[i];
-  m_cost_best=m_cost;
+double Particle::getBestPosition(size_t t)
+{
+   return m_position_best[t];
 };
 
-void Particle::SetCost(double x){
-  m_cost=x;
+double Particle::getVelocity(size_t t)
+{
+   return m_velocity[t];
 };
 
-void Particle::SetVelocity(size_t i, double x){
-  m_velocity[i]=x;
+double Particle::getCost()
+{
+   return m_cost;
 };
 
-void Particle::UpdateModel(TF1* f) { //assegna al modello i parametri corrispondenti alla posizione della particella
-  for (size_t i = 0; i < m_position.size(); ++i) {
-    f->SetParameter(i, m_position[i]);
-  }
+double Particle::getBestCost()
+{
+   return m_cost_best;
 };

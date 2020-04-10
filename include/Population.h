@@ -3,46 +3,64 @@
 
 #include <iostream>
 #include <numeric>
-
+#include <random>
 #include "Config.h"
 #include "Particle.h"
+#include "TCanvas.h"
+#include "TApplication.h"
+#include "TH1F.h"
 
 class Population {
 public:
-  Population(const Config&);
+   /// Population default constructor, starting from an assignment of Config
+   Population(const Config &t_config);
 
-  Population(const Population&);
+   /// Initialization of the population with random starting points for the particles and null velocity
+   void init();
 
-  void Init();
+   /// Return the number of particles in the population <br> <br>
+   /// Referenced by Evaluate::computeCostFit()
+   size_t size() const;
 
-  size_t Size() const;
+   /// Sort the particles according to their best solution
+   void sort();
 
-  void Sort();
+   /// Set the velocity for each particle in the population
+   void setVelocity();
 
-  Config Configuration();
+   /// Move all the particle in a new position with the calculated velocity
+   void moveParticles();
 
-  Particle& AccessParticle(size_t i) {
-    return m_particle[i];
-  };
+   /// Update the best cost for each particle if the new position is a better solution
+   void setBestCost();
 
-  Particle& operator[](size_t i) {
-    return m_particle[i];
-  };
+   /// Show on display the model with the best solution found and the normalized data in the background
+   void draw(TH1F *t_data, TF1 *t_model);
 
-  friend std::ostream& operator<<(std::ostream& os, Population& rhs) {
-    os << "--- Population ---\n";
-    /*for (size_t i = 0; i < rhs.Size(); ++i) { //stampa tutta la popolazione
-    os << rhs[i];
-  };*/
-  os << rhs[0]; //stampa migliore
+   /// Return the _t_ - particle
+   Particle &accessParticle(size_t t) { return m_particle[t]; };
 
-  os << "------------------\n";
-  return os;
-};
+   /// Return the _t_ - particle
+   Particle &operator[](size_t t) { return m_particle[t]; };
+
+   /// Show on video the current position, the best position and the best cost for the _0_ - particle (the one that has
+   /// found the best global solution)
+   friend std::ostream &operator<<(std::ostream &t_os, Population &t_rhs)
+   {
+      /*os << "--- Population ---\n";
+      for (size_t i = 0; i < rhs.size(); ++i) { //stampa tutta la popolazione
+      os << t_rhs[i];
+    };*/
+      t_os << t_rhs[0];
+
+      t_os << "------------------\n";
+      return t_os;
+   };
 
 private:
-  std::vector<Particle> m_particle;
-  Config m_conf;
+   std::vector<Particle> m_particle; /**<Vector of particles that compose the population*/
+   Config                m_config;   /**<Configuration used by the population*/
+   std::mt19937          m_mt;       /**<Random numbers generator used for calculations*/
 };
 
 #endif

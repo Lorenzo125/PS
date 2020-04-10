@@ -1,33 +1,81 @@
-#include "Population.h"
-#include "TH1F.h"
 #include <random>
+#include "Population.h"
 
-Population::Population(const Config& conf) :
-m_particle(conf.num_particles, conf.NumberOfParameters()), m_conf(conf) {};
+Population::Population(const Config &t_config)
+   : m_particle(t_config.getNumberOfParticles(), t_config.getNumberOfParameters()), m_config(t_config),
+     m_mt(std::random_device()()){};
 
-void Population::Init() {
-
-  std::random_device rd;
-  std::mt19937 rng(rd());
-
-  for (size_t i = 0; i < m_particle.size(); ++i) {
-    size_t psize = m_particle[i].Size();
-    for (size_t j = 0; j < psize; ++j) {
-      std::uniform_real_distribution<double> uni(m_conf.ParDomain.ViewParMin(j), m_conf.ParDomain.ViewParMax(j));
-      m_particle[i].SetPosition(j, uni(rng)),
-      m_particle[i].SetVelocity(j, 0.);
-    };
-  };
+void Population::init()
+{
+   size_t psize = m_particle[0].getDimension();
+   for (size_t i = 0; i < m_particle.size(); ++i) {
+      for (size_t j = 0; j < psize; ++j) {
+         std::uniform_real_distribution<double> uni(m_config.getParameterMin(j), m_config.getParameterMax(j));
+         m_particle[i].setPosition(j, uni(m_mt)), m_particle[i].setVelocity(j, 0.);
+      };
+   };
 };
 
-size_t Population::Size() const {
-  return m_particle.size();
+size_t Population::size() const
+{
+   return m_particle.size();
 };
 
-Config Population::Configuration() {
-  return m_conf;
+void Population::sort()
+{
+   std::sort(m_particle.begin(), m_particle.end());
 };
 
-void Population::Sort() {
-  std::sort(m_particle.begin(), m_particle.end());
+void Population::setVelocity()
+{
+   std::uniform_real_distribution<double> uni(0, 1);
+
+   for (size_t i = 0; i < m_particle.size(); ++i) {
+      for (size_t j = 0; j < m_particle[i].getDimension(); ++j) {
+         double cognitive = m_config.getCognitiveParameter() * uni(m_mt) *
+                            (m_particle[i].getBestPosition(j) - m_particle[i].getPosition(j));
+         double social = m_config.getSocialParameter() * uni(m_mt) *
+                         (m_particle[0].getBestPosition(j) - m_particle[i].getPosition(j));
+         double vel = m_config.getDumpingFactor() * (m_particle[i].getVelocity(j) + cognitive + social);
+         if (vel < m_config.getVMaxParameter()) {
+            m_particle[i].setVelocity(j, vel);
+         } else {
+            m_particle[i].setVelocity(j, m_config.getVMaxParameter());
+         };
+      };
+   };
+};
+
+void Population::moveParticles()
+{
+   for (size_t i = 0; i < m_particle.size(); ++i) {
+      for (size_t j = 0; j < m_particle[i].getDimension(); ++j) {
+         if (m_particle[i].getPosition(j) + m_particle[i].getVelocity(j) >= m_config.getParameterMax(j)) {
+            m_particle[i].setPosition(j, m_config.getParameterMax(j));
+         } else if (m_particle[i].getPosition(j) + m_particle[i].getVelocity(j) <= m_config.getParameterMin(j)) {
+            m_particle[i].setPosition(j, m_config.getParameterMin(j));
+         } else
+            m_particle[i].setPosition(j, m_particle[i].getPosition(j) + m_particle[i].getVelocity(j));
+      }
+   }
+};
+
+void Population::setBestCost()
+{
+   for (size_t i = 0; i < m_particle.size(); i++) {
+      if (m_particle[i].getCost() < m_particle[i].getBestCost()) {
+         m_particle[i].setBestPosition();
+      };
+   };
+};
+
+void Population::draw(TH1F *t_data, TF1 *t_model)
+{
+   TApplication *app = new TApplication("app", 0, 0);
+   TCanvas *     c1  = new TCanvas("c1", "", 1500, 500);
+   m_particle[0].setModel(t_model);
+   t_model->Draw("C");
+   t_model->SetTitle("Normalized function and histogram");
+   t_data->Draw("SAME");
+   app->Run();
 };

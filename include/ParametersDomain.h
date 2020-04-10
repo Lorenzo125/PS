@@ -6,37 +6,48 @@
 
 class Parameter {
 public:
-  Parameter() {
-    name = "";
-    min_val = 0.;
-    max_val = 0.;
-  };
+   ///::Parameter Default constructor <br> <br>
+   /// The parameter stores the m_name and the minimum and maximum values allowed for a fitting parameter
+   Parameter()
+   {
+      m_name    = "";
+      m_min_val = 0.;
+      m_max_val = 0.;
+   };
 
-  std::string name;
-  double min_val;
-  double max_val;
+   std::string m_name /**m_name of the parameter*/;
+   double      m_min_val /**Minimum value allowed for the parameter*/;
+   double      m_max_val /**Maximum value allowed for the parameter*/;
 };
 
 class ParametersDomain {
 public:
-  ParametersDomain();
+   ///::ParametersDomain default constructor
+   ParametersDomain();
 
-  ParametersDomain(size_t);
+   ///::ParametersDomain constructor with a defined number of parameters
+   ParametersDomain(size_t n);
 
-  void SetParDomain(size_t, std::string, double, double);
+   /// Set the _t_ - parameter with the m_name and the domain extreme values
+   void setParameterDomain(size_t t, std::string t_name, double t_min, double t_max);
 
-  size_t NumberOfParameters() const;
+   /// Return the number of parameters <br> <br>
+   /// Referenced by Config::getNumberOfParameters()
+   size_t getNumberOfParameters() const;
 
-  double ViewParMin(size_t i);
+   /// Return the minimum value allowed for the _t_ - parameter <br> <br>
+   /// Referenced by Config::getParameterMin()
+   double getParameterMin(size_t t);
 
-  double ViewParMax(size_t i);
+   /// Return the maximum value allowed for the _t_ - parameter <br> <br>
+   /// Referenced by Config::getParameterMax()
+   double getParameterMax(size_t t);
 
-  Parameter& operator[](size_t i) {
-    return m_par[i];
-  };
+   /// Return the _t_ - parameter
+   Parameter &operator[](size_t t) { return m_par[t]; };
 
 private:
-  std::vector<Parameter> m_par;
+   std::vector<Parameter> m_par; /**< Vector of parameters */
 };
 
 #endif
