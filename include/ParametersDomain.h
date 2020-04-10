@@ -6,7 +6,7 @@
 
 class Parameter {
 public:
-   ///::Parameter Default constructor <br> <br>
+   ///Parameter Default constructor <br> <br>
    /// The parameter stores the m_name and the minimum and maximum values allowed for a fitting parameter
    Parameter()
    {
@@ -22,10 +22,10 @@ public:
 
 class ParametersDomain {
 public:
-   ///::ParametersDomain default constructor
+   ///ParametersDomain default constructor
    ParametersDomain();
 
-   ///::ParametersDomain constructor with a defined number of parameters
+   ///ParametersDomain constructor with a defined number of parameters
    ParametersDomain(size_t n);
 
    /// Set the _t_ - parameter with the m_name and the domain extreme values
