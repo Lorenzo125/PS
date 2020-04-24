@@ -18,7 +18,6 @@ var searchData=
   ['m_5fsocial',['m_social',['../class_config.html#a7c3ba3378f9925c874750842441b6f41',1,'Config']]],
   ['m_5fvelocity',['m_velocity',['../class_particle.html#a3b19401adc03740daca967a0b5768bf4',1,'Particle']]],
   ['m_5fvmax',['m_vmax',['../class_config.html#a2af480c237c75b5c056701012e9ace0b',1,'Config']]],
-  ['main',['main',['../main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;main.c'],['../_p_s_min_8cc.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;PSMin.cc']]],
-  ['main_2ec',['main.c',['../main_8c.html',1,'']]],
+  ['main',['main',['../_p_s_min_8cc.html#a0ddf1224851353fc92bfbff6f499fa97',1,'PSMin.cc']]],
   ['moveparticles',['moveParticles',['../class_population.html#aabac78c1660156842135abfb68f39399',1,'Population']]]
 ];
