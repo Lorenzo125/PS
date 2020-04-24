@@ -2,7 +2,7 @@
 
 ParametersDomain::ParametersDomain() : m_par(0){};
 
-ParametersDomain::ParametersDomain(size_t n) : m_par(n){};
+ParametersDomain::ParametersDomain(int n) : m_par(n){};
 
 void ParametersDomain::setParameterDomain(size_t t, std::string t_name, double t_min, double t_max)
 {

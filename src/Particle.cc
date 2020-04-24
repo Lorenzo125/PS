@@ -1,7 +1,7 @@
 #include "Particle.h"
 #include "TRandom.h"
 
-Particle::Particle(size_t n) : m_position(n, 0), m_position_best(n, 0), m_velocity(n, 0), m_cost(0.), m_cost_best(0.){};
+Particle::Particle(int n) : m_position(n, 0), m_position_best(n, 0), m_velocity(n, 0), m_cost(0.), m_cost_best(0.){};
 
 void Particle::setPosition(size_t t, double t_x)
 {
