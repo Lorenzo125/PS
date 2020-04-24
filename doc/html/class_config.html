@@ -254,7 +254,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Return the cognitive learning factor <br />
  <br />
- Referenced by <a class="el" href="class_population.html#ab68605613683cadc3cd0952dd060b892" title="Set the velocity for each particle in the population. ">Population::setVelocity()</a> </p>
+ Referenced by <a class="el" href="class_population.html#ab68605613683cadc3cd0952dd060b892" title="Update the velocity for each particle in the population. ">Population::setVelocity()</a> </p>
 
 </div>
 </div>
@@ -282,7 +282,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Return the dumping factor <br />
  <br />
- Referenced by <a class="el" href="class_population.html#ab68605613683cadc3cd0952dd060b892" title="Set the velocity for each particle in the population. ">Population::setVelocity()</a> </p>
+ Referenced by <a class="el" href="class_population.html#ab68605613683cadc3cd0952dd060b892" title="Update the velocity for each particle in the population. ">Population::setVelocity()</a> </p>
 
 </div>
 </div>
@@ -367,7 +367,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Return the maximum value allowed for the <em>t</em> - parameter of fitting <br />
  <br />
- Referenced by <a class="el" href="class_population.html#a4a2d5a08f446c0c6e14e0c60385087a3" title="Initialization of the population with random starting points for the particles and null velocity...">Population::init()</a>, <a class="el" href="class_population.html#aabac78c1660156842135abfb68f39399" title="Move all the particle in a new position with the calculated velocity. ">Population::moveParticles()</a> </p>
+ Referenced by <a class="el" href="class_population.html#a4a2d5a08f446c0c6e14e0c60385087a3" title="Population initialization with random starting points for the particles and null velocity. ">Population::init()</a>, <a class="el" href="class_population.html#aabac78c1660156842135abfb68f39399" title="Move all the particles in a new position (the step corresponds to the velocity) ">Population::moveParticles()</a> </p>
 
 </div>
 </div>
@@ -396,7 +396,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Return the minimum value allowed for the <em>t</em> - parameter of fitting <br />
  <br />
- Referenced by <a class="el" href="class_population.html#a4a2d5a08f446c0c6e14e0c60385087a3" title="Initialization of the population with random starting points for the particles and null velocity...">Population::init()</a>, <a class="el" href="class_population.html#aabac78c1660156842135abfb68f39399" title="Move all the particle in a new position with the calculated velocity. ">Population::moveParticles()</a> </p>
+ Referenced by <a class="el" href="class_population.html#a4a2d5a08f446c0c6e14e0c60385087a3" title="Population initialization with random starting points for the particles and null velocity. ">Population::init()</a>, <a class="el" href="class_population.html#aabac78c1660156842135abfb68f39399" title="Move all the particles in a new position (the step corresponds to the velocity) ">Population::moveParticles()</a> </p>
 
 </div>
 </div>
@@ -422,9 +422,9 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Return the cognitive learning factor <br />
+<p>Return the social learning factor <br />
  <br />
- Referenced by <a class="el" href="class_population.html#ab68605613683cadc3cd0952dd060b892" title="Set the velocity for each particle in the population. ">Population::setVelocity()</a> </p>
+ Referenced by <a class="el" href="class_population.html#ab68605613683cadc3cd0952dd060b892" title="Update the velocity for each particle in the population. ">Population::setVelocity()</a> </p>
 
 </div>
 </div>
@@ -452,7 +452,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Return the maximum distance of movement-per-iteration allowed <br />
  <br />
- Referenced by <a class="el" href="class_population.html#ab68605613683cadc3cd0952dd060b892" title="Set the velocity for each particle in the population. ">Population::setVelocity()</a> </p>
+ Referenced by <a class="el" href="class_population.html#ab68605613683cadc3cd0952dd060b892" title="Update the velocity for each particle in the population. ">Population::setVelocity()</a> </p>
 
 </div>
 </div>
@@ -507,9 +507,9 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Set dumping factor calculating as default <br />
+<p>Set dumping factor calculated as default <br />
  <br />
- The dumping factor prevents the position oscillating around the best solution </p>
+ The dumping factor prevents the swing of the position around the best solution </p>
 
 </div>
 </div>
@@ -594,7 +594,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Set the cognitive learning factor, by deafult = 2.0 <br />
+<p>Set the social learning factor, by deafult = 2.0 <br />
  <br />
  This learning factor set the weight that the global best postion has in the next-step computation </p>
 

@@ -72,10 +72,10 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a52d0e4ded301b31dc11c1d1daf1663fa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_population.html#a52d0e4ded301b31dc11c1d1daf1663fa">Population</a> (const <a class="el" href="class_config.html">Config</a> &amp;t_config)</td></tr>
-<tr class="memdesc:a52d0e4ded301b31dc11c1d1daf1663fa"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_population.html">Population</a> default constructor, starting from an assignment of <a class="el" href="class_config.html">Config</a>.  <a href="#a52d0e4ded301b31dc11c1d1daf1663fa">More...</a><br /></td></tr>
+<tr class="memdesc:a52d0e4ded301b31dc11c1d1daf1663fa"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_population.html">Population</a> default constructor, starting from the assignment of a working configuration <a class="el" href="class_config.html">Config</a>.  <a href="#a52d0e4ded301b31dc11c1d1daf1663fa">More...</a><br /></td></tr>
 <tr class="separator:a52d0e4ded301b31dc11c1d1daf1663fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a2d5a08f446c0c6e14e0c60385087a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_population.html#a4a2d5a08f446c0c6e14e0c60385087a3">init</a> ()</td></tr>
-<tr class="memdesc:a4a2d5a08f446c0c6e14e0c60385087a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization of the population with random starting points for the particles and null velocity.  <a href="#a4a2d5a08f446c0c6e14e0c60385087a3">More...</a><br /></td></tr>
+<tr class="memdesc:a4a2d5a08f446c0c6e14e0c60385087a3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_population.html">Population</a> initialization with random starting points for the particles and null velocity.  <a href="#a4a2d5a08f446c0c6e14e0c60385087a3">More...</a><br /></td></tr>
 <tr class="separator:a4a2d5a08f446c0c6e14e0c60385087a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71a9278adc6877d0184afddbf0830467"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_population.html#a71a9278adc6877d0184afddbf0830467">size</a> () const</td></tr>
 <tr class="separator:a71a9278adc6877d0184afddbf0830467"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -83,10 +83,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aee1e5343d88cbfb4594dde4b0e6bb574"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sort the particles according to their best solution.  <a href="#aee1e5343d88cbfb4594dde4b0e6bb574">More...</a><br /></td></tr>
 <tr class="separator:aee1e5343d88cbfb4594dde4b0e6bb574"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab68605613683cadc3cd0952dd060b892"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_population.html#ab68605613683cadc3cd0952dd060b892">setVelocity</a> ()</td></tr>
-<tr class="memdesc:ab68605613683cadc3cd0952dd060b892"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the velocity for each particle in the population.  <a href="#ab68605613683cadc3cd0952dd060b892">More...</a><br /></td></tr>
+<tr class="memdesc:ab68605613683cadc3cd0952dd060b892"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the velocity for each particle in the population.  <a href="#ab68605613683cadc3cd0952dd060b892">More...</a><br /></td></tr>
 <tr class="separator:ab68605613683cadc3cd0952dd060b892"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabac78c1660156842135abfb68f39399"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_population.html#aabac78c1660156842135abfb68f39399">moveParticles</a> ()</td></tr>
-<tr class="memdesc:aabac78c1660156842135abfb68f39399"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move all the particle in a new position with the calculated velocity.  <a href="#aabac78c1660156842135abfb68f39399">More...</a><br /></td></tr>
+<tr class="memdesc:aabac78c1660156842135abfb68f39399"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move all the particles in a new position (the step corresponds to the velocity)  <a href="#aabac78c1660156842135abfb68f39399">More...</a><br /></td></tr>
 <tr class="separator:aabac78c1660156842135abfb68f39399"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1adfcb402e6cd9d003e58c6a382d06c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_population.html#a1adfcb402e6cd9d003e58c6a382d06c4">setBestCost</a> ()</td></tr>
 <tr class="memdesc:a1adfcb402e6cd9d003e58c6a382d06c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the best cost for each particle if the new position is a better solution.  <a href="#a1adfcb402e6cd9d003e58c6a382d06c4">More...</a><br /></td></tr>
@@ -132,7 +132,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="class_population.html">Population</a> default constructor, starting from an assignment of <a class="el" href="class_config.html">Config</a>. </p>
+<p><a class="el" href="class_population.html">Population</a> default constructor, starting from the assignment of a working configuration <a class="el" href="class_config.html">Config</a>. </p>
 
 </div>
 </div>
@@ -210,7 +210,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initialization of the population with random starting points for the particles and null velocity. </p>
+<p><a class="el" href="class_population.html">Population</a> initialization with random starting points for the particles and null velocity. </p>
 
 </div>
 </div>
@@ -229,7 +229,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Move all the particle in a new position with the calculated velocity. </p>
+<p>Move all the particles in a new position (the step corresponds to the velocity) </p>
 
 </div>
 </div>
@@ -295,7 +295,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Set the velocity for each particle in the population. </p>
+<p>Update the velocity for each particle in the population. </p>
 
 </div>
 </div>
@@ -372,7 +372,7 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Show on video the current position, the best position and the best cost for the <em>0</em> - particle (the one that has found the best global solution) </p>
+<p>Show on video the current position, the best position and the best cost for the <em>0</em> - particle (the one that has found the best global solution at all) </p>
 
 </div>
 </div>
