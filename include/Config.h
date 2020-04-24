@@ -28,12 +28,12 @@ public:
    /// This learning factor set the weight that the particle's own best postion has in the next-step computation
    void setCognitiveParameter(double t) { m_cognitive = t; };
 
-   /// Set the cognitive learning factor, by deafult = 2.0 <br> <br>
+   /// Set the social learning factor, by deafult = 2.0 <br> <br>
    /// This learning factor set the weight that the global best postion has in the next-step computation
    void setSocialParameter(double t) { m_social = t; };
 
-   /// Set dumping factor calculating as default <br> <br>
-   /// The dumping factor prevents the position oscillating around the best solution
+   /// Set dumping factor calculated as default <br> <br>
+   /// The dumping factor prevents the swing of the position around the best solution
    void setDumpingFactor()
    {
       double phi = m_social + m_cognitive;
@@ -55,7 +55,7 @@ public:
    /// Referenced by Population::setVelocity()
    double getCognitiveParameter() const { return m_cognitive; };
 
-   /// Return the cognitive learning factor <br> <br>
+   /// Return the social learning factor <br> <br>
    /// Referenced by Population::setVelocity()
    double getSocialParameter() const { return m_social; };
 

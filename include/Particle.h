@@ -8,8 +8,8 @@
 
 class Particle {
 public:
-   /// Particle default constructor _n_ - dimension particle (- _n_ fitting parameters)
-   Particle(size_t n);
+   /// Particle default constructor for an _n_ - dimensional research space (- _n_ fitting parameters)
+   Particle(int n);
 
    /// Set the particle's _t_ - coordinate <br> <br>
    /// Referenced by Population::init(), Population::moveParticles()
@@ -31,7 +31,7 @@ public:
    /// Referenced by Evaluate::computeCostFit()
    void setModel(TF1 *);
 
-   /// Return the dimension of particles <br> <br>
+   /// Return the the number of dimensions for the research space where particles move <br> <br>
    /// Referenced by Population::init(), Population::setVelocity(), Population::moveParticles()
    size_t getDimension() const;
 
@@ -47,7 +47,7 @@ public:
    /// Referenced by Population::setVelocity(), Population::moveParticles()
    double getVelocity(size_t t);
 
-   /// Return the cost computed using particle's current position <br> <br>
+   /// Return the cost computed using the current position of the particle <br> <br>
    /// Referenced by Population::setBestCost()
    double getCost();
 
@@ -55,7 +55,7 @@ public:
    /// Referenced by Population::setBestCost()
    double getBestCost();
 
-   /// Show on video the particle's attributes for each iteration
+   /// Show on video the characteristics of a particle
    friend std::ostream &operator<<(std::ostream &t_os, Particle &t_rhs)
    {
       std::cout << "la particella con chi best migliore attualmente si trova in:" << std::endl;
@@ -73,12 +73,12 @@ public:
       return t_os;
    };
 
-   /// Compare two particles' best cost found, in order to sort the particles
+   /// Compare two particles' best cost found, in order to sort particles
    friend bool operator<(const Particle &l, const Particle &r) { return l.m_cost_best < r.m_cost_best; };
 
 private:
-   std::vector<double> m_position;      /**<Vector storing the current position coordinates */
-   std::vector<double> m_position_best; /**<Vector storing the best position coordinates found */
+   std::vector<double> m_position;      /**<Vector storing the coordinates of the current position*/
+   std::vector<double> m_position_best; /**<Vector storing the coordinates of the best position found*/
    std::vector<double> m_velocity;      /**<Vector storing the velocity components*/
    double              m_cost;          /**<Particle's cost evaluated in the current position*/
    double              m_cost_best;     /**<Particle's best cost found*/

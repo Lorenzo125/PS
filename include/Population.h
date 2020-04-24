@@ -12,10 +12,10 @@
 
 class Population {
 public:
-   /// Population default constructor, starting from an assignment of Config
+   /// Population default constructor, starting from the assignment of a working configuration Config
    Population(const Config &t_config);
 
-   /// Initialization of the population with random starting points for the particles and null velocity
+   /// Population initialization with random starting points for the particles and null velocity
    void init();
 
    /// Return the number of particles in the population <br> <br>
@@ -25,10 +25,10 @@ public:
    /// Sort the particles according to their best solution
    void sort();
 
-   /// Set the velocity for each particle in the population
+   /// Update the velocity for each particle in the population
    void setVelocity();
 
-   /// Move all the particle in a new position with the calculated velocity
+   /// Move all the particles in a new position (the step corresponds to the velocity)
    void moveParticles();
 
    /// Update the best cost for each particle if the new position is a better solution
@@ -44,7 +44,7 @@ public:
    Particle &operator[](size_t t) { return m_particle[t]; };
 
    /// Show on video the current position, the best position and the best cost for the _0_ - particle (the one that has
-   /// found the best global solution)
+   /// found the best global solution at all)
    friend std::ostream &operator<<(std::ostream &t_os, Population &t_rhs)
    {
       /*os << "--- Population ---\n";

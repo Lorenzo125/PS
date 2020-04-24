@@ -7,8 +7,8 @@
 
 class Evaluate {
 public:
-   /// Compute the chi2/Ndof using the parameters given by the particle's current position <br> <br>
-   /// The chi2/Ndof is then assigned to the particle as cost to be minimized
+   /// Compute the chi2/Ndof using as fitting parameters the coordinates of the current position for the particle <br>
+   /// <br> The chi2/Ndof is assigned to the particle as cost to be minimized
    static void computeCostFit(Particle &t_par, TH1F *t_data, TF1 *t_model, double t_Ndof)
    {
       double chi2 = 0., x = 0., y = 0., c = 0., e = 0.;
@@ -25,8 +25,8 @@ public:
       t_par.setCost(chi2 / t_Ndof);
    };
 
-   /// Compute the chi2/Ndof using the parameters given by each particle in the population <br><br>
-   /// The chi2/Ndof is then assigned to the particles as cost to be minimized
+   /// Compute the chi2/Ndof using as fitting parameters the coordinates of the current position for each particle in
+   /// the population <br> <br> The chi2/Ndof is assigned to the particles as cost to be minimized
    static void computeCostFit(Population &t_pop, TH1F *t_data, TF1 *t_model, double t_Ndof)
    {
       for (size_t i = 0; i < t_pop.size(); ++i) {
