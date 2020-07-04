@@ -31,6 +31,10 @@ public:
    /// Referenced by Evaluate::computeCostFit()
    void setModel(TF1 *);
 
+   /// Update the parameters of the model with the best position ever found by the particle <br> <br>
+   /// Referenced by Population::draw();
+   void setModelBest(TF1 *t_f);
+
    /// Return the the number of dimensions for the research space where particles move <br> <br>
    /// Referenced by Population::init(), Population::setVelocity(), Population::moveParticles()
    size_t getDimension() const;
