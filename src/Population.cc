@@ -73,7 +73,7 @@ void Population::draw(TH1F *t_data, TF1 *t_model)
 {
    TApplication *app = new TApplication("app", 0, 0);
    TCanvas *     c1  = new TCanvas("c1", "", 1500, 500);
-   m_particle[0].setModel(t_model);
+   m_particle[0].setModelBest(t_model);
    t_model->Draw("C");
    t_model->SetTitle("Normalized function and histogram");
    t_data->Draw("SAME");

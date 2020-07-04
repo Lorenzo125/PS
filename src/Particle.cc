@@ -33,6 +33,13 @@ void Particle::setModel(TF1 *t_f)
    };
 };
 
+void Particle::setModelBest(TF1 *t_f)
+{
+   for (size_t i = 0; i < m_position.size(); ++i) {
+      t_f->SetParameter(i, m_position_best[i]);
+   };
+};
+
 size_t Particle::getDimension() const
 {
    return m_position.size();
