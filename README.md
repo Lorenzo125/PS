@@ -1,2 +1,2 @@
 # Particle swarm
-Fit di dati sperimentali
+Particle Swarm Optimization utilized as minimizer in the Least Square fitting process
