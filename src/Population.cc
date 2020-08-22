@@ -10,8 +10,9 @@ void Population::init()
    size_t psize = m_particle[0].getDimension();
    for (size_t i = 0; i < m_particle.size(); ++i) {
       for (size_t j = 0; j < psize; ++j) {
-         std::uniform_real_distribution<double> uni(m_config.getParameterMin(j), m_config.getParameterMax(j));
-         m_particle[i].setPosition(j, uni(m_mt)), m_particle[i].setVelocity(j, 0.);
+         std::uniform_real_distribution<double> uni1(m_config.getParameterMin(j), m_config.getParameterMax(j));
+         std::uniform_real_distribution<double> uni2(-m_config.getVMaxParameter(), m_config.getVMaxParameter());
+         m_particle[i].setPosition(j, uni1(m_mt)), m_particle[i].setVelocity(j, uni2(m_mt));
       };
    };
 };
@@ -29,18 +30,21 @@ void Population::sort()
 void Population::setVelocity()
 {
    std::uniform_real_distribution<double> uni(0, 1);
-
    for (size_t i = 0; i < m_particle.size(); ++i) {
       for (size_t j = 0; j < m_particle[i].getDimension(); ++j) {
          double cognitive = m_config.getCognitiveParameter() * uni(m_mt) *
                             (m_particle[i].getBestPosition(j) - m_particle[i].getPosition(j));
          double social = m_config.getSocialParameter() * uni(m_mt) *
                          (m_particle[0].getBestPosition(j) - m_particle[i].getPosition(j));
-         double vel = m_config.getDumpingFactor() * (m_particle[i].getVelocity(j) + cognitive + social);
-         if (vel < m_config.getVMaxParameter()) {
+         double vel = (m_particle[i].getVelocity(j) * m_config.getInertia() + cognitive + social);
+         if (abs(vel) < m_config.getVMaxParameter()) {
             m_particle[i].setVelocity(j, vel);
          } else {
-            m_particle[i].setVelocity(j, m_config.getVMaxParameter());
+            if (vel > m_config.getVMaxParameter()) {
+               m_particle[i].setVelocity(j, m_config.getVMaxParameter());
+            } else {
+               m_particle[i].setVelocity(j, -m_config.getVMaxParameter());
+            }
          };
       };
    };
