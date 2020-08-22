@@ -7,7 +7,7 @@
 class Parameter {
 public:
    /// Parameter default constructor <br> <br>
-   /// The parameter stores the name and the minimum and maximum values allowed for a fitting parameter
+   /// Parameter stores the name, the minimum and maximum values allowed for a parameter of the model
    Parameter()
    {
       m_name    = "";
@@ -28,7 +28,7 @@ public:
    /// ParametersDomain constructor for a set of _n_ - parameters
    ParametersDomain(int n);
 
-   /// Set the _t_ - parameter with the name and the domain extreme values
+   /// Set the _t_ - parameter assigning the name and the domain extreme values
    void setParameterDomain(size_t t, std::string t_name, double t_min, double t_max);
 
    /// Return the number of parameters <br> <br>

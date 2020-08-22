@@ -8,38 +8,38 @@
 
 class Particle {
 public:
-   /// Particle default constructor for an _n_ - dimensional research space (- _n_ fitting parameters)
+   /// Particle default constructor for an _n_ - dimensional search space (- _n_ fitting parameters)
    Particle(int n);
 
    /// Set the particle's _t_ - coordinate <br> <br>
    /// Referenced by Population::init(), Population::moveParticles()
    void setPosition(size_t t, double);
 
-   /// Update the best position recorded by the particle if the current one is a better solution <br> <br>
+   /// Set the best position recorded by the particle if the current one is better <br> <br>
    /// Referenced by Population::setBestCost()
    void setBestPosition();
 
-   /// Update the velocity according to best global solution and best own solution <br> <br>
+   /// Set the velocity <br> <br>
    /// Referenced by Population::setVelocity(), Population::init()
    void setVelocity(size_t, double);
 
-   /// Update the cost after the evaluation of the model in the current position <br> <br>
+   /// Set the cost of the current position <br> <br>
    /// Referenced by Evaluate::computeCostFit()
    void setCost(double);
 
-   /// Update the parameters of the model with the current position <br> <br>
+   /// Set the parameters of the model using the coordinates of the current position <br> <br>
    /// Referenced by Evaluate::computeCostFit()
    void setModel(TF1 *);
 
-   /// Update the parameters of the model with the best position ever found by the particle <br> <br>
+   /// Set the parameters of the model with the coordinates of the best position ever found by the particle <br> <br>
    /// Referenced by Population::draw();
    void setModelBest(TF1 *t_f);
 
-   /// Return the the number of dimensions for the research space where particles move <br> <br>
+   /// Return the the number of dimensions of the search space  <br> <br>
    /// Referenced by Population::init(), Population::setVelocity(), Population::moveParticles()
    size_t getDimension() const;
 
-   /// Return the _t_ - coordinate of the particle in the _n_ - space current position <br> <br>
+   /// Return the _t_ - coordinate of the particle in the current position <br> <br>
    /// Referenced by Population::setVelocity(), Population::moveParticles()
    double getPosition(size_t t);
 
@@ -77,7 +77,7 @@ public:
       return t_os;
    };
 
-   /// Compare two particles' best cost found, in order to sort particles
+   /// Compare two particles' best cost found
    friend bool operator<(const Particle &l, const Particle &r) { return l.m_cost_best < r.m_cost_best; };
 
 private:
