@@ -1,5 +1,5 @@
-# Genetic Algorithms
-Particle Swarm Optimization utilized as minimizer in the Least Square fitting process
+# Particle Swarm Optimization 
+Particle Swarm Optimization algorithm utilized as minimizer in the Least Square fitting process
 
 Install Root (https://root.cern/) before running the algorithm
 
