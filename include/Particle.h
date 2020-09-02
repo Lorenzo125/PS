@@ -62,12 +62,6 @@ public:
    /// Show on video the characteristics of a particle
    friend std::ostream &operator<<(std::ostream &t_os, Particle &t_rhs)
    {
-      std::cout << "la particella con chi best migliore attualmente si trova in:" << std::endl;
-      for (size_t i = 0; i < t_rhs.getDimension(); ++i) {
-         t_os << std::setw(10) << std::right << t_rhs.getPosition(i);
-         if (i < t_rhs.getDimension() - 1) t_os << ", ";
-      };
-      t_os << " --> fitness attuale " << t_rhs.m_cost << std::endl;
       std::cout << "la particella con chi best migliore ha trovato il chi best in: " << std::endl;
       for (size_t i = 0; i < t_rhs.getDimension(); ++i) {
          t_os << std::setw(10) << std::right << t_rhs.getBestPosition(i);
