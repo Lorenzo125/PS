@@ -1,5 +1,5 @@
 # Particle Swarm Optimization 
-Particle Swarm Optimization algorithm utilized as minimizer in the Least Square fitting process
+Particle Swarm Optimization algorithm utilized as algorithm in the minimization process of Least Square fitting
 
 Install Root (https://root.cern/) before running the algorithm
 
